@@ -7,78 +7,104 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
+      background-color: ##F5F5F1;
       text-align: center;
       padding: 40px;
       color: #333;
     }
 
-    img.logo {
-      max-width: 200px;
+    .logo {
+      max-width: 180px;
       margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.4rem;
       margin-bottom: 10px;
     }
 
     p {
       font-size: 1.1rem;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+    }
+
+    form {
+      margin-top: 20px;
     }
 
     input[type="email"] {
-      padding: 10px;
+      padding: 12px;
       font-size: 16px;
-      width: 250px;
+      width: 260px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 10px;
+      border-radius: 6px;
     }
 
     button {
-      padding: 10px 20px;
+      padding: 12px 20px;
       font-size: 16px;
-      background-color: #2e7d32;
+      background-color: #009688;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      margin-left: 10px;
       cursor: pointer;
     }
 
     #thanks {
       display: none;
-      margin-top: 20px;
-      color: green;
+      margin-top: 30px;
+      color: #388e3c;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <img src="logo001.png" alt="Central Taste" class="logo">
+  <img src="logo.png" alt="Central Taste Logo" class="logo">
   <h1>Central Taste is Coming Soon</h1>
-  <p>Order premium European groceries delivered in the USA. Sign up now and get 10% off your first order!</p>
+  <p>Order authentic European groceries in the USA. Sign up now and get 10% off your first order!</p>
 
-  <form action="https://formsubmit.co/info@centraltaste.com" method="POST" onsubmit="showThanks(event)">
-    <input type="email" name="email" required placeholder="Your email address">
-    <input type="hidden" name="_subject" value="New Subscriber - Central Taste">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_autoresponse" value="Thanks for subscribing to Central Taste! Your 10% promo code is WELCOME10">
-    <input type="hidden" name="_template" value="box">
-    <br>
-    <button type="submit">Get 10% Off</button>
+  <form id="signupForm">
+    <input type="email" name="email" id="emailInput" required placeholder="Enter your email">
+    <button type="submit">Notify Me</button>
   </form>
 
-  <div id="thanks">Thanks! Your promo code is: <strong>WELCOME10</strong></div>
+  <div id="thanks">
+    🎉 Thanks for signing up!  
+    Use promo code <strong>WELCOME10</strong> at checkout.
+  </div>
 
   <script>
-    function showThanks(e) {
+    const form = document.getElementById('signupForm');
+    const thanks = document.getElementById('thanks');
+
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      document.querySelector('form').style.display = 'none';
-      document.getElementById('thanks').style.display = 'block';
-      e.target.submit(); // send form to formsubmit
-    }
+
+      const email = document.getElementById('emailInput').value;
+
+      fetch("https://formsubmit.co/ajax/info@centraltaste.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          _subject: "New subscriber - Central Taste",
+          _captcha: "false"
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          thanks.style.display = 'block';
+        } else {
+          alert("Error submitting form. Try again.");
+        }
+      })
+      .catch(error => alert("Error: " + error));
+    });
   </script>
 </body>
 </html>
