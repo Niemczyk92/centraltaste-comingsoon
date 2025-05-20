@@ -1,114 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Central Taste – Coming Soon</title>
+  <meta charset="UTF-8">
+  <title>Central Taste - Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #F5F4F1;
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      color: #2e2e2e;
+      background-color: #F5F5F1;
       text-align: center;
-      transition: all 0.3s ease;
+      padding: 40px;
+      color: #333;
     }
 
-    img.logo {
-      width: 220px;
-      margin-bottom: 30px;
+    .logo {
+      max-width: 200px;
+      margin-bottom: 5px;
     }
 
     h1 {
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       margin-bottom: 10px;
-      font-weight: 600;
     }
 
     p {
-      font-size: 1.2rem;
-      max-width: 500px;
-      margin: 0 auto 30px auto;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
     }
 
     form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      margin-top: 20px;
     }
 
     input[type="email"] {
-      padding: 14px 16px;
+      padding: 12px;
       font-size: 16px;
-      width: 280px;
+      width: 260px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 14px;
+      border-radius: 6px;
     }
 
     button {
-      background-color: #2a9d8f;
-      color: #fff;
-      font-size: 16px;
       padding: 12px 20px;
+      font-size: 16px;
+      background-color: #009688;
+      color: white;
       border: none;
       border-radius: 8px;
+      margin-left: 10px;
       cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #21867a;
     }
 
     #thanks {
-      margin-top: 25px;
       display: none;
-      font-size: 1rem;
-      color: #2e7d32;
-    }
-
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      img.logo {
-        width: 180px;
-        margin-bottom: 25px;
-      }
-
-      input[type="email"] {
-        width: 90%;
-        margin-bottom: 16px;
-      }
-
-      button {
-        width: 90%;
-      }
+      margin-top: 30px;
+      color: #388e3c;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <img src="logo001.png" alt="Central Taste Logo" class="logo" />
-  <h1>We're Almost Ready!</h1>
-  <p>Central Taste is launching soon. Get authentic European groceries in the USA.  
-    Sign up now and receive <strong>10% off</strong> your first order!</p>
+  <img src="logo001.png" alt="Central Taste Logo" class="logo">
+  <h1>Central Taste is Coming Soon</h1>
+  <p>Order authentic European groceries in the USA. Sign up now and get 10% off your first order!</p>
 
   <form id="signupForm">
-    <input type="email" id="email" name="email" placeholder="Your email address" required />
-    <button type="submit">Get Notified</button>
+    <input type="email" name="email" id="emailInput" required placeholder="Enter your email">
+    <button type="submit">Notify Me</button>
   </form>
 
   <div id="thanks">
-    ✅ Thanks! Your email has been received.<br />
-    Use promo code <strong>WELCOME10</strong> at launch.
+    🎉 Thanks for signing up!  
+    Use promo code <strong>WELCOME10</strong> at checkout.
   </div>
 
   <script>
@@ -118,7 +81,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const email = document.getElementById('email').value;
+      const email = document.getElementById('emailInput').value;
 
       fetch("https://formsubmit.co/ajax/info@centraltaste.com", {
         method: "POST",
@@ -137,7 +100,7 @@
           form.style.display = 'none';
           thanks.style.display = 'block';
         } else {
-          alert("There was an error. Please try again.");
+          alert("Error submitting form. Try again.");
         }
       })
       .catch(error => alert("Error: " + error));
