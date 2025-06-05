@@ -2,82 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Central Taste - Coming Soon</title>
+  <title>Central Taste – Coming Soon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Favicon (průhledné PNG) -->
   <link rel="icon" type="image/png" href="favicon.png">
-
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #F5F5F1;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
-      padding: 40px;
-      color: #333;
     }
 
     .logo {
-      max-width: 200px;
-      margin-bottom: 5px;
-    }
+  max-width: 220px;
+  width: 100%;
+  margin: 0 auto 3rem auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    max-width: 280px;
+  }
+}
 
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
+      font-weight: 600;
       margin-bottom: 10px;
     }
 
     p {
       font-size: 1.1rem;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      max-width: 500px;
+      line-height: 1.6;
     }
 
     form {
-      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
     }
 
     input[type="email"] {
-      padding: 12px;
+      padding: 12px 16px;
       font-size: 16px;
-      width: 260px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      width: 280px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.2s ease;
+    }
+
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #888;
     }
 
     button {
       padding: 12px 20px;
       font-size: 16px;
-      background-color: #009688;
-      color: white;
+      background-color: #111;
+      color: #fff;
       border: none;
       border-radius: 8px;
-      margin-left: 10px;
       cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #333;
     }
 
     #thanks {
       display: none;
-      margin-top: 30px;
-      color: #388e3c;
-      font-weight: bold;
+      margin-top: 25px;
+      color: #2e7d32;
+      font-weight: 500;
+    }
+
+    @media (max-width: 480px) {
+      input[type="email"] {
+        width: 90%;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Logo v SVG -->
   <img src="logo.svg" alt="Central Taste Logo" class="logo">
-
-  <h1>Central Taste is Coming Soon</h1>
-  <p>Order authentic European groceries in the USA. Sign up now and get 10% off your first order!</p>
+  <h1>European Taste is Coming</h1>
+  <p>Authentic groceries from Europe — delivered to your door in the US. Join our newsletter and enjoy <strong>10% off</strong> your first order.</p>
 
   <form id="signupForm">
-    <input type="email" name="email" id="emailInput" required placeholder="Enter your email">
+    <input type="email" name="email" id="emailInput" required placeholder="Enter your email address">
     <button type="submit">Notify Me</button>
   </form>
 
   <div id="thanks">
-    🎉 Thanks for signing up!  
-    Use promo code <strong>WELCOME10</strong> at checkout.
+    🎉 Thanks for signing up! Use code <strong>WELCOME10</strong> at launch.
   </div>
 
   <script>
