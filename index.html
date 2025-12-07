@@ -3,150 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central Taste | Coming Soon to Delray Beach</title>
+    <title>Central Taste - Bold. Classic. Uncompromised.</title>
     <style>
-        /* Základní nastavení a fonty */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap');
-
-        :root {
-            --bg-color: #1a1a1a; /* Tmavá káva */
-            --text-color: #f3f3f3;
-            --accent-color: #d4a373; /* Barva cremy/latte */
-            --secondary-bg: #2c2c2c;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            text-align: center;
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
         }
 
-        /* Hlavní sekce */
-        .container {
-            flex: 1;
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            overflow: hidden;
         }
 
-        /* Logo styl */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 30% 50%, rgba(139, 69, 19, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(101, 67, 33, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+        }
+
+        .steam {
+            position: absolute;
+            bottom: 40%;
+            width: 100%;
+            height: 300px;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .steam-line {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+            animation: rise 4s ease-in infinite;
+            opacity: 0;
+        }
+
+        .steam-line:nth-child(1) { left: 48%; animation-delay: 0s; }
+        .steam-line:nth-child(2) { left: 50%; animation-delay: 0.8s; }
+        .steam-line:nth-child(3) { left: 52%; animation-delay: 1.6s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            80% { opacity: 0.3; }
+            100% { transform: translateY(-200px) translateX(20px); opacity: 0; }
+        }
+
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, #d4a574 0%, #f5e6d3 50%, #8b4513 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 1.2s ease-out;
+            text-shadow: 0 0 40px rgba(212, 165, 116, 0.3);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .tagline {
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+            color: #d4a574;
+            animation: fadeIn 1.5s ease-out 0.3s backwards;
+            font-weight: 300;
+        }
+
+        .coming-soon {
+            margin-top: 3rem;
             font-size: 1.2rem;
-            color: #aaaaaa;
-            margin-bottom: 50px;
-            letter-spacing: 1px;
+            color: #999;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.8s ease-out 0.6s backwards;
+            text-align: center;
+            line-height: 1.8;
         }
 
-        /* Hlavní text */
-        h1 {
-            font-family: 'Playfair Display', serif;
+        .coming-soon strong {
+            color: #d4a574;
+            font-size: 1.4rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+            animation: fadeInUp 1s ease-out;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
             font-size: 2.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
+            color: #d4a574;
+            letter-spacing: 0.05em;
+            position: relative;
+            display: inline-block;
         }
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: #cccccc;
-            max-width: 600px;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4a574, transparent);
         }
 
-        /* Taste Profile Box */
-        .profile-box {
-            background-color: var(--secondary-bg);
-            padding: 30px;
+        .description {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .profile-item {
+            padding: 2rem;
+            background: rgba(212, 165, 116, 0.05);
+            border: 1px solid rgba(212, 165, 116, 0.2);
             border-radius: 8px;
-            border: 1px solid #444;
-            margin-bottom: 40px;
+            transition: all 0.3s ease;
+            text-align: center;
         }
 
-        .profile-box h3 {
-            color: var(--accent-color);
-            margin-top: 0;
-            font-family: 'Playfair Display', serif;
+        .profile-item:hover {
+            background: rgba(212, 165, 116, 0.1);
+            border-color: rgba(212, 165, 116, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
         }
 
-        /* Kontakt */
+        .profile-item-title {
+            font-size: 1.3rem;
+            color: #d4a574;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            margin-top: 3rem;
+        }
+
+        .contact-title {
+            font-size: 1.8rem;
+            color: #d4a574;
+            margin-bottom: 1.5rem;
+        }
+
         .contact-info {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #888;
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #ccc;
         }
 
-        .contact-info a {
-            color: var(--accent-color);
+        .email-link {
+            color: #d4a574;
             text-decoration: none;
-            font-weight: bold;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
-        /* Patička */
+        .email-link:hover {
+            border-bottom-color: #d4a574;
+            color: #f5e6d3;
+        }
+
         footer {
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #555;
-            border-top: 1px solid #333;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: #000;
+            color: #666;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
         }
 
-        /* Responzivita pro mobily */
-        @media (max-width: 600px) {
-            .logo { font-size: 2.5rem; }
-            h1 { font-size: 2rem; }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 2rem;
+            color: #d4a574;
+            opacity: 0.6;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @media (max-width: 768px) {
+            .logo { font-size: 3rem; }
+            .tagline { font-size: 1rem; letter-spacing: 0.2em; }
+            .coming-soon { font-size: 1rem; }
+            .section-title { font-size: 2rem; }
+            .description { font-size: 1rem; }
+            .profile-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <div class="hero">
+        <div class="steam">
+            <div class="steam-line"></div>
+            <div class="steam-line"></div>
+            <div class="steam-line"></div>
+        </div>
+        <h1 class="logo">Central Taste</h1>
+        <p class="tagline">BOLD. CLASSIC. UNCOMPROMISED.</p>
+        <div class="coming-soon">
+            Coming to <strong>Delray Beach</strong><br>Spring 2026
+        </div>
+        <div class="scroll-indicator"></div>
+    </div>
 
-    <div class="container">
-        <div class="logo">Central Taste</div>
-        <div class="tagline">BOLD. CLASSIC. UNCOMPROMISED.</div>
-
-        <h1>Coming to Delray Beach<br>Spring 2026</h1>
-        
-        <p>
-            We are bringing the art of traditional espresso back to Florida. 
-            No trends, just perfect extraction, rich body, and the comfort of coffee 
-            as it was meant to be.
-        </p>
-
-        <div class="profile-box">
-            <h3>Our Profile</h3>
-            <p>Chocolate • Toasted Nuts • Caramel • Full Body</p>
-            <p style="font-size: 0.9rem; margin-bottom: 0;">We focus on bold, low-acidity espresso blends paired perfectly with milk.</p>
+    <div class="content">
+        <div class="section">
+            <h2 class="section-title">Our Philosophy</h2>
+            <p class="description">
+                We are bringing the art of traditional espresso back to Florida. No trends, just perfect extraction, rich body, and the comfort of coffee as it was meant to be.
+            </p>
+            <p class="description">
+                Central Taste is a return to authenticity—where every shot tells a story of craftsmanship, patience, and respect for the bean.
+            </p>
         </div>
 
-        <div class="contact-info">
-            <p><strong>Business & Wholesale Inquiries:</strong></p>
-            <p>Kamil Niemczyk, Founder</p>
-            <p><a href="mailto:kamil@centraltaste.com">Connect via Email</a></p>
-            <p>(754) 262-9592</p>
+        <div class="section">
+            <h2 class="section-title">Our Profile</h2>
+            <p class="description">
+                We focus on bold, low-acidity espresso blends paired perfectly with milk.
+            </p>
+            <div class="profile-grid">
+                <div class="profile-item">
+                    <div class="profile-item-title">Chocolate</div>
+                </div>
+                <div class="profile-item">
+                    <div class="profile-item-title">Toasted Nuts</div>
+                </div>
+                <div class="profile-item">
+                    <div class="profile-item-title">Caramel</div>
+                </div>
+                <div class="profile-item">
+                    <div class="profile-item-title">Full Body</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="contact-box">
+                <h2 class="contact-title">Business & Wholesale Inquiries</h2>
+                <div class="contact-info">
+                    <strong>Kamil Niemczyk</strong>, Founder<br>
+                    Connect via <a href="mailto:contact@centraltaste.com" class="email-link">Email</a>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
-        &copy; 2025 Central Taste. Delray Beach, Florida. All Rights Reserved.
+        © 2025 Central Taste. Delray Beach, Florida. All Rights Reserved.
     </footer>
-
 </body>
 </html>
